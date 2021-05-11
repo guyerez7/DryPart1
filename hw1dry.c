@@ -44,25 +44,27 @@ Node mergeSortedLists(Node list1, Node list2, ErrorCode* error_code)
     }
 
     //(*ptrlist1)->next;
-    Node *ptrlist1 = &list1, *ptrlist2 = &list2;
+    Node *ptrlist1 = &list1, *ptrlist2 = &list2, *ptrnext = NULL;
     //Node mergedlist
+    int xx = 0;
 
 	while((*ptrlist1)->next != NULL && (*ptrlist2)->next != NULL) {
         
-        int xx;
+        Node merged_list = createNode(xx,error_code);
         if((*ptrlist1)->x <= (*ptrlist2)->x) {
             xx = (*ptrlist1)->x;
-            (*ptrlist1) = list1->next; 
+            merged_list->next = *ptrlist1;
+            *ptrlist1 = (*ptrlist1)->next; 
         }
         else{
-
+            xx = (*ptrlist2)->x;
+            merged_list->next = *ptrlist2;
+            *ptrlist2 = (*ptrlist2)->next;
         }
-
-        Node merged_list = createNode(xx,error_code);
-
-	}
+        
+	} 
     
-    finishTailEnd()
+    finishTailEnd() // we must define and use (to fill merged tail)
 }
 
 Node createNode(int x, ErrorCode* error_code){
